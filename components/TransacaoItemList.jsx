@@ -32,17 +32,43 @@ export function TransacaoItemList({ transacao, onRemove, onEdit }) {
         )}
       >
         <View style={styles.itemContainer}>
-          <Text style={styles.descricao}>{transacao.descricao}</Text>
-          <Text style={styles.valor}>{transacao.valor.BRL}</Text>
-          <Text style={styles.data}>{formatDate(transacao.data)}</Text>
           {isLandscape && (
-            <>
-              <Text style={styles.hora}>{formatTime(transacao.hora)}</Text>
-              <Text style={styles.categoria}>{transacao.categoria.label}</Text>
-              <Text style={styles.tipo}>{transacao.tipo.label}</Text>
-              <Text style={styles.moeda}>{transacao.moeda.label}</Text>
-            </>
+            <Text style={styles.moeda}>{transacao.moeda.key}</Text>
           )}
+
+          <View style={styles.detailsContainer}>
+            <Text style={styles.descricao}>{transacao.descricao}</Text>
+            <View style={styles.dateTimeContainer}>
+              <Text style={styles.data}>{formatDate(transacao.data)}</Text>
+              {isLandscape && (
+                <Text style={styles.hora}>{formatTime(transacao.hora)}</Text>
+              )}
+            </View>
+          </View>
+
+          <View style={styles.valueContainer}>
+            <Text
+              style={[
+                styles.valor,
+                transacao.tipo.key === "expense" && styles.valorDespesa,
+              ]}
+            >
+              {transacao.valor.BRL.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </Text>
+
+            {isLandscape && (
+              <View style={styles.typeCategoryContainer}>
+                <Text style={styles.tipo}>{transacao.tipo.label}</Text>
+                <Text style={styles.separator}>-</Text>
+                <Text style={styles.categoria}>
+                  {transacao.categoria.label}
+                </Text>
+              </View>
+            )}
+          </View>
         </View>
       </ReanimatedSwipeable>
     </GestureHandlerRootView>
@@ -54,11 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 10,
   },
-  sideButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-  },
   itemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -67,47 +88,68 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
+    borderRadius: 8,
+    marginVertical: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    gap: 8,
+  },
+  detailsContainer: {
+    gap: 4,
+    marginLeft: 10,
+  },
+  dateTimeContainer: {
+    flexDirection: "row",
   },
   descricao: {
-    flex: 2,
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
   },
   valor: {
-    flex: 1,
     fontSize: 16,
+    fontWeight: "bold",
     color: "#28a745",
     textAlign: "right",
   },
+  valorDespesa: {
+    color: "#dc3545",
+  },
   data: {
-    flex: 1,
     fontSize: 14,
     color: "#666",
-    textAlign: "right",
   },
   hora: {
-    flex: 1,
     fontSize: 14,
     color: "#666",
-    textAlign: "right",
+    marginLeft: 10,
   },
   categoria: {
-    flex: 1,
     fontSize: 14,
     color: "#666",
-    textAlign: "right",
   },
   tipo: {
-    flex: 1,
     fontSize: 14,
     color: "#666",
-    textAlign: "right",
   },
   moeda: {
-    flex: 1,
     fontSize: 14,
     color: "#666",
-    textAlign: "right",
+  },
+  valueContainer: {
+    flex: 1,
+    alignItems: "flex-end",
+  },
+  typeCategoryContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+  },
+  separator: {
+    marginHorizontal: 5,
+    color: "#666",
   },
 });

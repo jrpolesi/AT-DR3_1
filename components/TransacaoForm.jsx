@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ActivityIndicator, TextInput, View } from "react-native";
+import { ActivityIndicator, StyleSheet, TextInput, View } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { useGetExchangeRateForDate } from "../hooks/useGetExchangeRateForDate";
 import { useGetMoedas } from "../hooks/useGetMoedas";
@@ -65,12 +65,16 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
       return;
     }
 
-    const BRL = formValues.value.original * exchangeRate?.cotacaoCompra;
+    const value = {
+      original: parseFloat(formValues.value.original),
+    };
+
+    const BRL = value.original * exchangeRate?.cotacaoCompra;
 
     onSubmit({
       ...formValues,
       value: {
-        ...formValues.value,
+        ...value,
         BRL,
       },
       type: formValues?.type ?? {
@@ -108,7 +112,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
             value={formValues.value?.original?.toString()}
             onChangeText={(text) =>
               handleInputChange("value", {
-                original: parseFloat(text),
+                original: text,
               })
             }
             keyboardType="numeric"
@@ -140,6 +144,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
           <ModalSelector
             data={CATEGORY_OPTIONS}
             initValue={formValues.category?.label ?? "Selecione a categoria"}
+            initValueTextStyle={styles.initValue}
             onChange={(option) => handleInputChange("category", option)}
           />
         </FormField>
@@ -148,6 +153,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
           <ModalSelector
             data={currenciesOptions}
             initValue={formValues.currency?.label ?? "Selecione a moeda"}
+            initValueTextStyle={styles.initValue}
             onChange={(option) => handleInputChange("currency", option)}
             cancelText="Cancelar"
           />
@@ -157,11 +163,11 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
           <SwitchInput
             leftLabel="Receita"
             rightLabel="Despesa"
-            value={isIncome(formValues.type) ? true : false}
+            value={isExpense(formValues.type) ? true : false}
             onValueChange={(value) => {
               const typeValue = {
-                label: value ? "Receita" : "Despesa",
-                key: value ? "income" : "expense",
+                label: value ? "Despesa" : "Receita",
+                key: value ? "expense" : "income",
               };
 
               handleInputChange("type", typeValue);
@@ -181,8 +187,8 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
   );
 }
 
-function isIncome(type) {
-  return type?.key === "income";
+function isExpense(type) {
+  return type?.key === "expense";
 }
 
 function validateForm(values) {
@@ -214,3 +220,9 @@ function validateForm(values) {
 
   return errors;
 }
+
+const styles = StyleSheet.create({
+  initValue: {
+    color: "black",
+  },
+});
