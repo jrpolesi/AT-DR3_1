@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { FormField } from "./FormField.jsx";
 import { SystemButton } from "./SystemButton.jsx";
 
@@ -33,16 +33,18 @@ export function LoginForm({ onSubmit }) {
   }
 
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.form}>
         <FormField label="Nome de usuário" error={error?.username}>
           <TextInput
+            style={styles.input}
             value={formValues.username}
             onChangeText={(text) => handleInputChange("username", text)}
           />
         </FormField>
         <FormField label="Senha" error={error?.password}>
           <TextInput
+            style={styles.input}
             secureTextEntry
             value={formValues.password}
             onChangeText={(text) => handleInputChange("password", text)}
@@ -50,7 +52,9 @@ export function LoginForm({ onSubmit }) {
         </FormField>
       </View>
 
-      <SystemButton onPress={handleSubmit}>Login</SystemButton>
+      <SystemButton onPress={handleSubmit} style={styles.button}>
+        Login
+      </SystemButton>
     </View>
   );
 }
@@ -68,3 +72,23 @@ function validateForm(formValues) {
 
   return errors;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    justifyContent: "center",
+    padding: 16,
+    backgroundColor: "#f5f5f5",
+  },
+  form: {
+    marginBottom: 24,
+  },
+  input: {
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    backgroundColor: "#fff",
+  },
+});

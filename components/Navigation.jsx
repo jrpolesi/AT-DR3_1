@@ -40,7 +40,7 @@ export function Navigation() {
   return (
     <NavigationContainer>
       <stackNavigator.Navigator>
-        {!isAuth ? (
+        {isAuth ? (
           <>
             <stackNavigator.Screen name="TransacaoList">
               {(props) => (
