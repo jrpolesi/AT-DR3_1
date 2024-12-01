@@ -3,7 +3,7 @@
     "name": "template",
     "slug": "snack-7e045cdd-7a7c-4fdb-b062-623e6af92e63",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
