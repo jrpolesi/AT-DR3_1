@@ -25,9 +25,9 @@ export function filterAndSortValues(values, options) {
 function filterValues(values, filter) {
   return values.filter(
     (value) =>
-      value.description.toLowerCase().includes(filter.toLowerCase()) ||
-      value.category.toLowerCase().includes(filter.toLowerCase()) ||
-      value.type.toLowerCase().includes(filter.toLowerCase())
+      value.descricao.toLowerCase().includes(filter.toLowerCase()) ||
+      value.categoria.label.toLowerCase().includes(filter.toLowerCase()) ||
+      value.tipo.label.toLowerCase().includes(filter.toLowerCase())
   );
 }
 
@@ -38,35 +38,36 @@ function sortValues(values, sort) {
 
   return [...values].sort((a, b) => {
     if (sort === SORT_VALUES_MAP.description) {
-      return a.description.localeCompare(b.description);
+      return a.descricao.localeCompare(b.descricao);
     }
 
     if (sort === SORT_VALUES_MAP.valueAsc) {
-      return a.value.BRL - b.value.BRL;
+      return a.valor.BRL - b.valor.BRL;
     }
 
     if (sort === SORT_VALUES_MAP.valueDesc) {
-      return b.value.BRL - a.value.BRL;
+      return b.valor.BRL - a.valor.BRL;
     }
 
+    //  TODO: corrigir a ordenação por data
     if (sort === SORT_VALUES_MAP.dateAsc) {
-      return a.date - b.date;
+      return new Date(a.data + " " + a.hora) - new Date(b.data + " " + b.hora);
     }
 
     if (sort === SORT_VALUES_MAP.dateDesc) {
-      return b.date - a.date;
+      return new Date(b.data + " " + b.hora) - new Date(a.data + " " + a.hora);
     }
 
     if (sort === SORT_VALUES_MAP.category) {
-      return a.category.localeCompare(b.category.label);
+      return a.category.localeCompare(b.categoria.label);
     }
 
     if (sort === SORT_VALUES_MAP.type) {
-      return a.type.localeCompare(b.type.label);
+      return a.type.localeCompare(b.tipo.label);
     }
 
     if (sort === SORT_VALUES_MAP.currency) {
-      return a.currency.localeCompare(b.currency.label);
+      return a.currency.localeCompare(b.moeda.label);
     }
 
     return 0;

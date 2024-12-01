@@ -44,7 +44,7 @@ export function TransacaoListScreen({ transacoes, navigation, onRemove }) {
             keyExtractor={(item) => item.id}
           />
         ) : (
-          <Text>
+          <Text style={styles.emptyText}>
             {filter || sort
               ? "Nenhum resultado encontrado para a busca."
               : "Nenhuma transação cadastrada. Adicione uma transação."}
@@ -56,7 +56,7 @@ export function TransacaoListScreen({ transacoes, navigation, onRemove }) {
         style={styles.fabButton}
         onPress={() => navigation.navigate("TransacaoForm")}
       >
-        <Icon name="plus" size={24} />
+        <Icon name="plus" size={24} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -72,9 +72,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     flex: 1,
   },
+  emptyText: {
+    textAlign: "center",
+    color: "#888",
+    marginTop: 20,
+    fontSize: 16,
+  },
   fabButton: {
     position: "absolute",
     bottom: 20,
     right: 20,
+    backgroundColor: "#007bff",
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
