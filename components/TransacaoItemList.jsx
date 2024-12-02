@@ -7,16 +7,29 @@ import { formatDate } from "../utils/formatDate.js";
 import { formatTime } from "../utils/formatTime.js";
 import { SideAction } from "./SideAction.jsx";
 
-export function TransacaoItemList({ transacao, onRemove, onEdit }) {
+export function TransacaoItemList({
+  transacao,
+  onRemove,
+  onEdit,
+  swipeableRefs,
+}) {
   const { isLandscape } = useLayoutOrientation();
+
+  const ref = React.useRef(null);
+
+  swipeableRefs[transacao.id] = ref;
 
   return (
     <GestureHandlerRootView>
       <ReanimatedSwipeable
+        ref={ref}
         containerStyle={styles.container}
         renderLeftActions={(_, drag) => (
           <SideAction
-            onPress={() => onEdit(transacao.id)}
+            onPress={() => {
+              onEdit(transacao.id);
+              ref.current.close();
+            }}
             offsetX={-40}
             iconName="edit"
             drag={drag}
@@ -25,7 +38,10 @@ export function TransacaoItemList({ transacao, onRemove, onEdit }) {
         )}
         renderRightActions={(_, drag) => (
           <SideAction
-            onPress={() => onRemove(transacao.id)}
+            onPress={() => {
+              delete swipeableRefs[transacao.id];
+              onRemove(transacao.id);
+            }}
             offsetX={+40}
             iconName="trash"
             drag={drag}
@@ -33,6 +49,15 @@ export function TransacaoItemList({ transacao, onRemove, onEdit }) {
             style={styles.rightAction}
           />
         )}
+        onSwipeableWillOpen={() => {
+          for (const entry of Object.entries(swipeableRefs)) {
+            const [id, ref] = entry;
+
+            if (ref.current && id !== transacao.id) {
+              ref.current.close();
+            }
+          }
+        }}
       >
         <View style={styles.itemContainer}>
           {isLandscape && (

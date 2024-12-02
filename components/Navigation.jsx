@@ -37,6 +37,25 @@ export function Navigation() {
 
   const { isAuth } = useAuthContext();
 
+  function handleCreate(value) {
+    setTransacoes([...transacoes, { id: getRandomId(), ...value }]);
+  }
+
+  function handleRemove(id) {
+    setTransacoes((prev) => prev.filter((item) => item.id !== id));
+  }
+
+  function handleUpdate(value) {
+    setTransacoes((prev) =>
+      prev.map((item) => {
+        if (item.id === value.id) {
+          return value;
+        }
+        return item;
+      })
+    );
+  }
+
   return (
     <NavigationContainer>
       <stackNavigator.Navigator>
@@ -46,11 +65,7 @@ export function Navigation() {
               {(props) => (
                 <TransacaoListScreen
                   transacoes={transacoes}
-                  onRemove={(id) =>
-                    setTransacoes((prev) =>
-                      prev.filter((item) => item.id !== id)
-                    )
-                  }
+                  onRemove={handleRemove}
                   {...props}
                 />
               )}
@@ -59,17 +74,8 @@ export function Navigation() {
               {(props) => (
                 <TransacaoFormScreen
                   transacoes={transacoes}
-                  onCreate={(value) =>
-                    setTransacoes([
-                      ...transacoes,
-                      { id: getRandomId(), ...value },
-                    ])
-                  }
-                  onUpdate={(value) =>
-                    setTransacoes((prev) =>
-                      prev.map((item) => (item.id === value.id ? value : item))
-                    )
-                  }
+                  onCreate={handleCreate}
+                  onUpdate={handleUpdate}
                   {...props}
                 />
               )}

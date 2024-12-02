@@ -17,6 +17,8 @@ export function TransacaoListScreen({ transacoes, navigation, onRemove }) {
 
   const filteredTransacoes = filterAndSortValues(transacoes, { filter, sort });
 
+  const swipeableRefs = {};
+
   return (
     <View style={styles.container}>
       <TransacaoFilters
@@ -32,6 +34,7 @@ export function TransacaoListScreen({ transacoes, navigation, onRemove }) {
             data={filteredTransacoes}
             renderItem={({ item }) => (
               <TransacaoItemList
+                swipeableRefs={swipeableRefs}
                 transacao={item}
                 onEdit={(transacaoId) =>
                   navigation.navigate("TransacaoForm", {

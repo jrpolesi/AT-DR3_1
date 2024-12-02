@@ -27,7 +27,10 @@ export function TransacaoFormScreen({
     };
 
     if (transacao) {
-      onUpdate(normalizedValue);
+      onUpdate({
+        id: transacaoId,
+        ...normalizedValue,
+      });
     } else {
       onCreate(normalizedValue);
     }
