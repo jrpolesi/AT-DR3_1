@@ -94,14 +94,15 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
   );
 
   if (currenciesIsLoading) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={styles.loadingIndicator} />;
   }
 
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.form}>
         <FormField label="Descrição" error={error?.description}>
           <TextInput
+            style={styles.input}
             value={formValues.description}
             onChangeText={(text) => handleInputChange("description", text)}
           />
@@ -109,6 +110,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
 
         <FormField label="Valor" error={error?.value}>
           <TextInput
+            style={styles.input}
             value={formValues.value?.original?.toString()}
             onChangeText={(text) =>
               handleInputChange("value", {
@@ -119,7 +121,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
           />
         </FormField>
 
-        <View>
+        <View style={styles.dateTimeContainer}>
           <FormField label="Data" error={error?.date}>
             <DateTimePickerInput
               label="Data"
@@ -198,7 +200,7 @@ function validateForm(values) {
     errors.description = "Campo obrigatório";
   }
 
-  if (!values?.value.original) {
+  if (!values?.value?.original) {
     errors.value = "Campo obrigatório";
   }
 
@@ -210,11 +212,11 @@ function validateForm(values) {
     errors.hour = "Campo obrigatório";
   }
 
-  if (!values?.category.key) {
+  if (!values?.category?.key) {
     errors.category = "Campo obrigatório";
   }
 
-  if (!values?.currency.key) {
+  if (!values?.currency?.key) {
     errors.currency = "Campo obrigatório";
   }
 
@@ -222,7 +224,37 @@ function validateForm(values) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  form: {
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  input: {
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    backgroundColor: "#fff",
+  },
+  dateTimeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   initValue: {
-    color: "black",
+    color: "#333",
+    borderStyle: "solid",
+  },
+  loadingIndicator: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -8,7 +8,11 @@ import {
 export function SystemButton({ isLoading, children, ...props }) {
   return (
     <TouchableOpacity {...props} style={[styles.button, props.style]}>
-      {isLoading ? <ActivityIndicator color="#fff" /> : <Text style={styles.text}>{children}</Text>}
+      {isLoading ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <Text style={styles.text}>{children}</Text>
+      )}
     </TouchableOpacity>
   );
 }
@@ -18,8 +22,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#007BFF",
     backgroundColor: "#007BFF",
     alignItems: "center",
     justifyContent: "center",

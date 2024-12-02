@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Button, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import { formatDate } from "../utils/formatDate";
 import { formatTime } from "../utils/formatTime";
 
@@ -15,11 +16,16 @@ export function DateTimePickerInput({
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <View style={style}>
-      <Button
-        title={value ? getFormattedDate(value, props.mode) : label}
+    <View style={[styles.container, style]}>
+      <TouchableOpacity
+        style={[styles.button, buttonStyle]}
         onPress={() => setIsVisible(true)}
-      />
+      >
+        <Icon name="calendar" size={24} style={[styles.icon]} />
+        <Text style={styles.text}>
+          {value ? getFormattedDate(value, props.mode) : label}
+        </Text>
+      </TouchableOpacity>
       <DateTimePickerModal
         isVisible={isVisible}
         onConfirm={(...args) => {
@@ -46,3 +52,19 @@ function getFormattedDate(date, mode) {
 
   return formatTime(date);
 }
+
+const styles = StyleSheet.create({
+  button: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  icon: {
+    marginRight: 10,
+    color: "#007BFF",
+  },
+  text: {
+    fontSize: 16,
+    color: "#007BFF",
+  },
+});

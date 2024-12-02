@@ -20,6 +20,7 @@ export function TransacaoItemList({ transacao, onRemove, onEdit }) {
             offsetX={-40}
             iconName="edit"
             drag={drag}
+            style={styles.leftAction}
           />
         )}
         renderRightActions={(_, drag) => (
@@ -28,6 +29,8 @@ export function TransacaoItemList({ transacao, onRemove, onEdit }) {
             offsetX={+40}
             iconName="trash"
             drag={drag}
+            color="#dc3545"
+            style={styles.rightAction}
           />
         )}
       >
@@ -80,14 +83,18 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 10,
   },
+  leftAction: {
+    paddingRight: 20,
+  },
+  rightAction: {
+    paddingLeft: 20,
+  },
   itemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 15,
     backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
     borderRadius: 8,
     marginVertical: 5,
     shadowColor: "#000",
@@ -99,7 +106,6 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     gap: 4,
-    marginLeft: 10,
   },
   dateTimeContainer: {
     flexDirection: "row",

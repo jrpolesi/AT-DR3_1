@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { Text, View } from "react-native";
+import React, { useMemo } from "react";
+import { StyleSheet, View } from "react-native";
 import { TransacaoForm } from "../components/TransacaoForm";
 
 export function TransacaoFormScreen({
@@ -36,9 +36,7 @@ export function TransacaoFormScreen({
   }
 
   return (
-    <View>
-      <Text>TransacaoFormScreen</Text>
-
+    <View style={styles.container}>
       <TransacaoForm
         defaultValue={
           transacao && {
@@ -56,3 +54,10 @@ export function TransacaoFormScreen({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+});
