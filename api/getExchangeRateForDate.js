@@ -5,7 +5,10 @@ export async function getExchangeRateForDate(options = {}) {
   const { currency, date } = options;
 
   if (!currency || !date) {
-    return;
+    return {
+      body: null,
+      response: null,
+    };
   }
 
   const urlParams = `@moeda='${currency}'&@dataCotacao='${formatDate(

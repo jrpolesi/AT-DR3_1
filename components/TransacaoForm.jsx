@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   ScrollView,
   StyleSheet,
+  Text,
   TextInput,
   View,
 } from "react-native";
@@ -31,6 +32,7 @@ const DEFAULT_ERRORS = {
   category: null,
   type: null,
   currency: null,
+  submit: null,
 };
 
 const DEFAULT_FORM_VALUES = {
@@ -74,6 +76,14 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
     const value = {
       original: parseFloat(formValues.value.original),
     };
+
+    if (!exchangeRate?.cotacaoCompra) {
+      setError({
+        ...DEFAULT_ERRORS,
+        submit: `Não foi possível obter a cotação da moeda: ${formValues.currency?.key}`,
+      });
+      return;
+    }
 
     const BRL = value.original * exchangeRate?.cotacaoCompra;
 
@@ -184,6 +194,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
           />
         </FormField>
       </View>
+      {error?.submit && <Text style={styles.submitError}>{error?.submit}</Text>}
 
       <SystemButton
         onPress={handleSubmit}
@@ -237,11 +248,6 @@ const styles = StyleSheet.create({
   form: {
     borderRadius: 10,
     padding: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
   },
   input: {
     height: 40,
@@ -258,6 +264,10 @@ const styles = StyleSheet.create({
   initValue: {
     color: "#333",
     borderStyle: "solid",
+  },
+  submitError: {
+    color: "red",
+    marginBottom: 10,
   },
   loadingIndicator: {
     flex: 1,

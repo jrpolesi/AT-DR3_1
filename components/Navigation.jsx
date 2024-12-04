@@ -38,7 +38,12 @@ export function Navigation() {
       <stackNavigator.Navigator>
         {isAuth ? (
           <>
-            <stackNavigator.Screen name="TransacaoList">
+            <stackNavigator.Screen
+              name="TransacaoList"
+              options={{
+                title: "Transações",
+              }}
+            >
               {(props) => (
                 <TransacaoListScreen
                   transacoes={transacoes}
@@ -47,7 +52,12 @@ export function Navigation() {
                 />
               )}
             </stackNavigator.Screen>
-            <stackNavigator.Screen name="TransacaoForm">
+            <stackNavigator.Screen
+              name="TransacaoForm"
+              options={{
+                title: "Formulário de Transação",
+              }}
+            >
               {(props) => (
                 <TransacaoFormScreen
                   transacoes={transacoes}
@@ -59,7 +69,13 @@ export function Navigation() {
             </stackNavigator.Screen>
           </>
         ) : (
-          <stackNavigator.Screen name="Login" component={LoginScreen} />
+          <stackNavigator.Screen
+            name="Login"
+            options={{
+              title: "Login",
+            }}
+            component={LoginScreen}
+          />
         )}
       </stackNavigator.Navigator>
     </NavigationContainer>
