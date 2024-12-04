@@ -65,7 +65,13 @@ export function TransacaoItemList({
           )}
 
           <View style={styles.detailsContainer}>
-            <Text style={styles.descricao}>{transacao.descricao}</Text>
+            <Text
+              numberOfLines={3}
+              ellipsizeMode="tail"
+              style={styles.descricao}
+            >
+              {transacao.descricao}
+            </Text>
             <View style={styles.dateTimeContainer}>
               <Text style={styles.data}>{formatDate(transacao.data)}</Text>
               {isLandscape && (
@@ -130,6 +136,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   detailsContainer: {
+    flex: 1,
     gap: 4,
   },
   dateTimeContainer: {
@@ -171,8 +178,8 @@ const styles = StyleSheet.create({
     color: "#666",
   },
   valueContainer: {
-    flex: 1,
     alignItems: "flex-end",
+    flexShrink: 0,
   },
   typeCategoryContainer: {
     flexDirection: "row",

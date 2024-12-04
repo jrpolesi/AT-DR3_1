@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { SORT_VALUES } from "../utils/filterAndSortValues.js";
+import { SORT_VALUES, SORT_VALUES_MAP } from "../utils/filterAndSortValues.js";
 
 export function TransacaoFilters({
   filter,
@@ -43,7 +43,14 @@ export function TransacaoFilters({
 
         <ModalSelector
           data={SORT_VALUES}
-          onChange={(opt) => onChangeSort(opt.key)}
+          onChange={(opt) => {
+            if (opt.key === SORT_VALUES_MAP.none) {
+              onChangeSort(undefined);
+              return;
+            }
+
+            onChangeSort(opt.key);
+          }}
           initValue={"Ordenar por..."}
           cancelText="Cancelar"
         />

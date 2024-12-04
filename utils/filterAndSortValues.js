@@ -49,27 +49,36 @@ function sortValues(values, sort) {
       return b.valor.BRL - a.valor.BRL;
     }
 
-    //  TODO: corrigir a ordenação por data
     if (sort === SORT_VALUES_MAP.dateAsc) {
-      return new Date(a.data + " " + a.hora) - new Date(b.data + " " + b.hora);
+      return sumHourToDate(a.data, a.hora) - sumHourToDate(b.data, b.hora);
     }
 
     if (sort === SORT_VALUES_MAP.dateDesc) {
-      return new Date(b.data + " " + b.hora) - new Date(a.data + " " + a.hora);
+      return sumHourToDate(b.data, b.hora) - sumHourToDate(a.data, a.hora);
     }
 
     if (sort === SORT_VALUES_MAP.category) {
-      return a.category.localeCompare(b.categoria.label);
+      return a.categoria.label.localeCompare(b.categoria.label);
     }
 
     if (sort === SORT_VALUES_MAP.type) {
-      return a.type.localeCompare(b.tipo.label);
+      return a.tipo.label.localeCompare(b.tipo.label);
     }
 
     if (sort === SORT_VALUES_MAP.currency) {
-      return a.currency.localeCompare(b.moeda.label);
+      return a.moeda.key.localeCompare(b.moeda.key);
     }
 
     return 0;
   });
+}
+
+function sumHourToDate(date, hour) {
+  const hours = hour.getHours();
+  const minutes = hour.getMinutes();
+
+  const newDate = new Date(date);
+  newDate.setHours(hours);
+  newDate.setMinutes(minutes);
+  return newDate;
 }

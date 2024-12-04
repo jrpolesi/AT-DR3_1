@@ -33,10 +33,142 @@ export function Navigation() {
         key: "EUR",
       },
     },
+    {
+      id: "aaaaa",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
+    {
+      id: "33rv3",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
+    {
+      id: "9h99fw",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
+    {
+      id: "fjnof38hf",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
+    {
+      id: "9393939",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
+    {
+      id: "77777ajdf",
+      descricao: "iaundia ndviau vianvdiandv iuan vian divua nd",
+      valor: {
+        original: 300.78,
+        BRL: 499.4728,
+      },
+      data: new Date("2023-12-01T18:26:37.731Z"),
+      hora: new Date("2023-12-01T18:30:37.731Z"),
+      categoria: {
+        label: "Saúde",
+        key: "saude",
+      },
+      tipo: {
+        label: "Receita",
+        key: "income",
+      },
+      moeda: {
+        label: "Euro",
+        key: "EUR",
+      },
+    },
   ]);
 
   const { isAuth } = useAuthContext();
-
+console.log(transacoes)
   function handleCreate(value) {
     setTransacoes([...transacoes, { id: getRandomId(), ...value }]);
   }
@@ -59,7 +191,7 @@ export function Navigation() {
   return (
     <NavigationContainer>
       <stackNavigator.Navigator>
-        {isAuth ? (
+        {!isAuth ? (
           <>
             <stackNavigator.Screen name="TransacaoList">
               {(props) => (

@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-import { ActivityIndicator, StyleSheet, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { useGetExchangeRateForDate } from "../hooks/useGetExchangeRateForDate";
 import { useGetMoedas } from "../hooks/useGetMoedas";
@@ -73,6 +79,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
 
     onSubmit({
       ...formValues,
+      description: formValues.description.trim(),
       value: {
         ...value,
         BRL,
@@ -98,7 +105,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.form}>
         <FormField label="Descrição" error={error?.description}>
           <TextInput
@@ -185,7 +192,7 @@ export function TransacaoForm({ onSubmit, defaultValue }) {
       >
         Salvar
       </SystemButton>
-    </View>
+    </ScrollView>
   );
 }
 
