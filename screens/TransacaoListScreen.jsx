@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TransacaoFilters } from "../components/TransacaoFilters";
-import { TransacaoItemList } from "../components/TransacaoItemList";
-import { filterAndSortValues } from "../utils/filterAndSortValues";
+import { TransacaoFilters } from "../components/TransacaoFilters.jsx";
+import { TransacaoItemList } from "../components/TransacaoItemList.jsx";
+import { filterAndSortValues } from "../utils/filterAndSortValues.js";
 
 export function TransacaoListScreen({ transacoes, navigation, onRemove }) {
   const [filter, setFilter] = useState(null);

@@ -1,4 +1,4 @@
-import { formatDate } from "../utils/formatDate";
+import { formatDate } from "../utils/formatDate.js";
 import { BASE_URL, defaultHeaders } from "./constants.js";
 
 export async function getExchangeRateForDate(options = {}) {

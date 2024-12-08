@@ -8,12 +8,12 @@ import {
   View,
 } from "react-native";
 import ModalSelector from "react-native-modal-selector";
-import { useGetExchangeRateForDate } from "../hooks/useGetExchangeRateForDate";
-import { useGetMoedas } from "../hooks/useGetMoedas";
-import { DateTimePickerInput } from "./DateTimePickerInput";
-import { FormField } from "./FormField";
-import { SwitchInput } from "./SwitchInput";
-import { SystemButton } from "./SystemButton";
+import { useGetExchangeRateForDate } from "../hooks/useGetExchangeRateForDate.jsx";
+import { useGetMoedas } from "../hooks/useGetMoedas.jsx";
+import { DateTimePickerInput } from "./DateTimePickerInput.jsx";
+import { FormField } from "./FormField.jsx";
+import { SwitchInput } from "./SwitchInput.jsx";
+import { SystemButton } from "./SystemButton.jsx";
 
 const CATEGORY_OPTIONS = [
   { label: "Alimentação", key: "alimentacao" },

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from "react-native-vector-icons/FontAwesome6";
-import { formatDate } from "../utils/formatDate";
-import { formatTime } from "../utils/formatTime";
+import { formatDate } from "../utils/formatDate.js";
+import { formatTime } from "../utils/formatTime.js";
 
 export function DateTimePickerInput({
   onConfirm,
@@ -26,7 +26,7 @@ export function DateTimePickerInput({
           {value ? getFormattedDate(value, props.mode) : label}
         </Text>
       </TouchableOpacity>
-      <DateTimePickerModal
+      <DateTimePicker
         isVisible={isVisible}
         onConfirm={(...args) => {
           setIsVisible(false);

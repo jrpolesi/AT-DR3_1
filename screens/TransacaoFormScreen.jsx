@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { TransacaoForm } from "../components/TransacaoForm";
+import { TransacaoForm } from "../components/TransacaoForm.jsx";
 
 export function TransacaoFormScreen({
   transacoes,

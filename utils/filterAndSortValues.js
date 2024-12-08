@@ -18,8 +18,8 @@ export const SORT_VALUES_MAP = SORT_VALUES.reduce((acc, value) => {
 export function filterAndSortValues(values, options) {
   const { filter, sort } = options;
 
-  const filtered = !!filter ? filterValues(values, filter) : values;
-  return !!sort ? sortValues(filtered, sort) : filtered;
+  const filtered = filter ? filterValues(values, filter) : values;
+  return sort ? sortValues(filtered, sort) : filtered;
 }
 
 function filterValues(values, filter) {

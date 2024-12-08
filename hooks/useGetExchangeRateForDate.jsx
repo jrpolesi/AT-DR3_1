@@ -1,5 +1,5 @@
-import { api } from "../api/api";
-import { useQuery } from "./useQuery";
+import { api } from "../api/api.js";
+import { useQuery } from "./useQuery.jsx";
 
 export function useGetExchangeRateForDate({ currency, date }) {
   const { data, isLoading, error } = useQuery(api.getExchangeRateForDate, {
