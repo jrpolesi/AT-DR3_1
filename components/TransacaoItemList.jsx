@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import {
+  GestureHandlerRootView,
+  ReanimatedSwipeable,
+} from "react-native-gesture-handler";
 import { useLayoutOrientation } from "../hooks/useLayoutOrientation.jsx";
 import { formatDate } from "../utils/formatDate.js";
 import { formatTime } from "../utils/formatTime.js";
