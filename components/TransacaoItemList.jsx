@@ -1,7 +1,7 @@
 import React from "react";
-import { ReanimatedSwipeable } from "react-gesture-handler-swipeable2";
 import { StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useLayoutOrientation } from "../hooks/useLayoutOrientation.jsx";
 import { formatDate } from "../utils/formatDate.js";
 import { formatTime } from "../utils/formatTime.js";
@@ -21,7 +21,7 @@ export function TransacaoItemList({
 
   return (
     <GestureHandlerRootView>
-      <ReanimatedSwipeable
+      <Swipeable
         ref={ref}
         containerStyle={styles.container}
         renderLeftActions={(_, drag) => (
@@ -30,7 +30,6 @@ export function TransacaoItemList({
               onEdit(transacao.id);
               ref.current.close();
             }}
-            offsetX={-40}
             iconName="edit"
             drag={drag}
             style={styles.leftAction}
@@ -104,7 +103,7 @@ export function TransacaoItemList({
             )}
           </View>
         </View>
-      </ReanimatedSwipeable>
+      </Swipeable>
     </GestureHandlerRootView>
   );
 }
