@@ -1,4 +1,4 @@
-import Icon from "@expo/vector-icons/FontAwesome6.js";
+import Icon from "@expo/vector-icons/FontAwesome6";
 import { useState } from "react";
 import {
   FlatList,
